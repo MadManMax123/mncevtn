@@ -1,4 +1,8 @@
 export default async function handler(req, res) {
+  if (req.method !== "POST") {
+    return res.status(405).end();
+  }
+
   const { password } = req.body;
 
   const encoder = new TextEncoder();
@@ -9,8 +13,14 @@ export default async function handler(req, res) {
   const hashHex = hashArray.map(b => b.toString(16).padStart(2, "0")).join("");
 
   if (hashHex === process.env.ADMIN_HASH) {
-    return res.status(200).json({ success: true });
-  } else {
-    return res.status(401).json({ success: false });
+    // simple session token
+    const token = Math.random().toString(36).slice(2);
+
+    return res.status(200).json({
+      success: true,
+      token
+    });
   }
+
+  return res.status(401).json({ success: false });
 }
