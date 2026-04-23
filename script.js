@@ -1,7 +1,6 @@
 // ===============================
 // ⚙️ CONFIG — ITEMS PER ROUND
 // ===============================
-
 const roundItems = {
   1: [
     "Compass","Clock","Map","Book","Lantern","Lead","Fishing Rod","Arrow",
@@ -18,6 +17,35 @@ const roundItems = {
 };
 
 // ===============================
+// 🔐 LOGIN FUNCTION (UPDATED)
+// ===============================
+async function login() {
+  const password = document.getElementById("passwordInput").value;
+
+  try {
+    const res = await fetch("/api/auth", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json"
+      },
+      body: JSON.stringify({ password })
+    });
+
+    const data = await res.json();
+
+    if (data.success) {
+      localStorage.setItem("authToken", data.token);
+      window.location.href = "main.html";
+    } else {
+      alert("Wrong password");
+    }
+  } catch (err) {
+    console.error(err);
+    alert("Server error");
+  }
+}
+
+// ===============================
 // 🎨 COLOR GENERATOR
 // ===============================
 function getColor(i, total) {
@@ -30,6 +58,8 @@ function getColor(i, total) {
 // ===============================
 function createTicks(id) {
   const el = document.getElementById(id);
+  if (!el) return;
+
   for (let i = 0; i < 24; i++) {
     const t = document.createElement("div");
     t.className = "tick";
@@ -52,7 +82,6 @@ class Spinner {
 
     this.angle = 0;
     this.spinning = false;
-    this.lastWinnerIndex = null;
 
     this.cx = 170;
     this.cy = 170;
@@ -78,9 +107,8 @@ class Spinner {
       ctx.arc(this.cx, this.cy, this.radius, start, end);
       ctx.closePath();
 
-      let color = getColor(i, total);
+      const color = getColor(i, total);
 
-      // 🌟 FLASH SELECTED
       if (i === highlightIndex) {
         ctx.fillStyle = "#ffffff";
         ctx.shadowColor = "#fff";
@@ -154,7 +182,6 @@ class Spinner {
     const norm = ((-this.angle - Math.PI / 2) % (2 * Math.PI) + 2 * Math.PI) % (2 * Math.PI);
     const index = Math.floor(norm / slice) % total;
 
-    this.lastWinnerIndex = index;
     const winner = this.items[index];
 
     // 🎉 FLASH EFFECT
@@ -175,40 +202,31 @@ class Spinner {
   }
 }
 
-if (localStorage.getItem("auth") === "true") {
-  document.getElementById("login-screen").style.display = "none";
-  document.getElementById("app").style.display = "block";
-}
+// ===============================
+// 🔐 AUTH CHECK (MAIN PAGE)
+// ===============================
+function checkAuth() {
+  const token = localStorage.getItem("authToken");
 
-async function login() {
-  const password = document.getElementById("passwordInput").value;
-
-  const res = await fetch("/api/auth", {
-    method: "POST",
-    headers: {
-      "Content-Type": "application/json"
-    },
-    body: JSON.stringify({ password })
-  });
-
-  const data = await res.json();
-
-  if (data.success) {
-    localStorage.setItem("auth", "true");
-    location.reload();
-  } else {
-    alert("Wrong password");
+  if (!token) {
+    window.location.href = "index.html";
   }
 }
 
 // ===============================
-// 🚀 INIT EVERYTHING
+// 🚀 INIT
 // ===============================
+window.onload = () => {
+  // Only run spinners if we're on main.html
+  if (document.getElementById("wheel1")) {
+    checkAuth();
 
-createTicks("ticks1");
-createTicks("ticks2");
-createTicks("ticks3");
+    createTicks("ticks1");
+    createTicks("ticks2");
+    createTicks("ticks3");
 
-const spinner1 = new Spinner(1);
-const spinner2 = new Spinner(2);
-const spinner3 = new Spinner(3);
+    new Spinner(1);
+    new Spinner(2);
+    new Spinner(3);
+  }
+};
