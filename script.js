@@ -1,102 +1,27 @@
-// ===============================
-// ⚙️ CONFIG — ITEMS PER ROUND
-// ===============================
-const roundItems = {
-  1: [
-    "Compass","Clock","Map","Book","Lantern","Lead","Fishing Rod","Arrow",
-    "Flint & Steel","Glass Bottle","Brick","Campfire","Mushroom Stew",
-    "Ink Sac","String","Leather","Feather","Charcoal","Paper","Cooked Beef"
-  ],
-  2: [
-    "Diamond","Diamond Block","Iron Armor","Gold Armor",
-    "Enchanted Sword","Blaze Powder","Ender Pearl","Observer"
-  ],
-  3: [
-    "Beacon","Netherite Block","Dragon Egg","Heavy Core","Elytra"
-  ]
-};
-
-// ===============================
-// 🔐 LOGIN FUNCTION (UPDATED)
-// ===============================
-async function login() {
-  const password = document.getElementById("passwordInput").value;
-
-  try {
-    const res = await fetch("/api/auth", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json"
-      },
-      body: JSON.stringify({ password })
-    });
-
-    const data = await res.json();
-
-    if (data.success) {
-      localStorage.setItem("authToken", data.token);
-      window.location.href = "main.html";
-    } else {
-      alert("Wrong password");
-    }
-  } catch (err) {
-    console.error(err);
-    alert("Server error");
-  }
-}
-
-// ===============================
-// 🎨 COLOR GENERATOR
-// ===============================
-function getColor(i, total) {
-  const hue = (i / total) * 360;
-  return `hsl(${hue}, 80%, 55%)`;
-}
-
-// ===============================
-// 🧱 CREATE TICKS
-// ===============================
-function createTicks(id) {
-  const el = document.getElementById(id);
-  if (!el) return;
-
-  for (let i = 0; i < 24; i++) {
-    const t = document.createElement("div");
-    t.className = "tick";
-    t.style.transform = `rotate(${i * 15}deg)`;
-    el.appendChild(t);
-  }
-}
-
-// ===============================
-// 🎡 SPINNER CLASS
-// ===============================
+// ===== COMMON WHEEL CLASS =====
 class Spinner {
-  constructor(round) {
-    this.round = round;
-    this.items = [...roundItems[round]];
-    this.canvas = document.getElementById(`wheel${round}`);
+  constructor(canvasId, resultId, buttonId, items) {
+    this.canvas = document.getElementById(canvasId);
     this.ctx = this.canvas.getContext("2d");
-    this.resultEl = document.getElementById(`result${round}`);
-    this.button = document.getElementById(`btn${round}`);
-
-    this.angle = 0;
-    this.spinning = false;
+    this.resultEl = document.getElementById(resultId);
+    this.button = document.getElementById(buttonId);
 
     this.cx = 170;
     this.cy = 170;
-    this.radius = 165;
+    this.radius = 168;
+
+    this.items = items;
+    this.angle = 0;
+    this.spinning = false;
 
     this.draw();
-    this.button.onclick = () => this.spin();
   }
 
-  draw(highlightIndex = null) {
+  draw() {
     const ctx = this.ctx;
-    const total = this.items.length;
-    const slice = (2 * Math.PI) / total;
-
     ctx.clearRect(0, 0, 340, 340);
+
+    const slice = (2 * Math.PI) / this.items.length;
 
     this.items.forEach((item, i) => {
       const start = this.angle + i * slice;
@@ -107,126 +32,137 @@ class Spinner {
       ctx.arc(this.cx, this.cy, this.radius, start, end);
       ctx.closePath();
 
-      const color = getColor(i, total);
-
-      if (i === highlightIndex) {
-        ctx.fillStyle = "#ffffff";
-        ctx.shadowColor = "#fff";
-        ctx.shadowBlur = 30;
-      } else {
-        ctx.fillStyle = color + "22";
-        ctx.shadowBlur = 0;
-      }
-
+      ctx.fillStyle = item.color + "18";
       ctx.fill();
 
-      ctx.strokeStyle = color;
-      ctx.lineWidth = 2;
+      ctx.strokeStyle = item.color + "aa";
+      ctx.lineWidth = 1.5;
       ctx.stroke();
 
-      // TEXT
       ctx.save();
       ctx.translate(this.cx, this.cy);
       ctx.rotate(start + slice / 2);
       ctx.textAlign = "right";
-      ctx.fillStyle = "#fff";
-      ctx.font = "bold 10px monospace";
-      ctx.fillText(item, this.radius - 10, 4);
+      ctx.font = 'bold 8px "Share Tech Mono"';
+      ctx.fillStyle = item.color;
+      ctx.shadowColor = item.color;
+      ctx.shadowBlur = 8;
+      ctx.fillText(item.label, this.radius - 8, 3);
       ctx.restore();
     });
-
-    // center
-    ctx.beginPath();
-    ctx.arc(this.cx, this.cy, 30, 0, 2 * Math.PI);
-    ctx.fillStyle = "#020d1a";
-    ctx.fill();
   }
 
   spin() {
     if (this.spinning) return;
 
     this.spinning = true;
-    this.button.disabled = true;
     this.resultEl.textContent = "";
+    this.button.disabled = true;
 
-    const spins = 5 + Math.random() * 5;
+    const spins = 6 + Math.random() * 4;
     const target = this.angle + spins * 2 * Math.PI + Math.random() * 2 * Math.PI;
 
-    const duration = 4000;
+    const duration = 4200;
     const start = performance.now();
     const startAngle = this.angle;
 
+    const ease = (t) => 1 - Math.pow(1 - t, 4); // smoother
+
     const animate = (now) => {
-      let t = (now - start) / duration;
-      if (t > 1) t = 1;
-
-      const ease = 1 - Math.pow(1 - t, 3);
-      this.angle = startAngle + (target - startAngle) * ease;
-
+      const t = Math.min((now - start) / duration, 1);
+      this.angle = startAngle + (target - startAngle) * ease(t);
       this.draw();
 
       if (t < 1) {
         requestAnimationFrame(animate);
       } else {
-        this.finishSpin();
+        this.finish();
       }
     };
 
     requestAnimationFrame(animate);
   }
 
-  finishSpin() {
-    const total = this.items.length;
-    const slice = (2 * Math.PI) / total;
-
-    const norm = ((-this.angle - Math.PI / 2) % (2 * Math.PI) + 2 * Math.PI) % (2 * Math.PI);
-    const index = Math.floor(norm / slice) % total;
-
-    const winner = this.items[index];
-
-    // 🎉 FLASH EFFECT
-    let flashes = 0;
-    const flashInterval = setInterval(() => {
-      this.draw(flashes % 2 === 0 ? index : null);
-      flashes++;
-      if (flashes > 6) {
-        clearInterval(flashInterval);
-        this.draw(index);
-      }
-    }, 120);
-
-    this.resultEl.textContent = `▸ ${winner.toUpperCase()} ◂`;
-
+  finish() {
     this.spinning = false;
     this.button.disabled = false;
+
+    const slice = (2 * Math.PI) / this.items.length;
+    const norm =
+      (((-this.angle - Math.PI / 2) % (2 * Math.PI)) + 2 * Math.PI) %
+      (2 * Math.PI);
+
+    const index = Math.floor(norm / slice);
+    const chosen = this.items[index];
+
+    // 💥 result animation
+    this.resultEl.textContent = "▸ " + chosen.label.toUpperCase() + " ◂";
+    this.resultEl.style.color = chosen.color;
+    this.resultEl.style.textShadow = `0 0 20px ${chosen.color}, 0 0 40px ${chosen.color}`;
+
+    this.resultEl.animate(
+      [
+        { transform: "scale(0.8)", opacity: 0 },
+        { transform: "scale(1.2)", opacity: 1 },
+        { transform: "scale(1)", opacity: 1 }
+      ],
+      { duration: 500, easing: "ease-out" }
+    );
   }
 }
 
-// ===============================
-// 🔐 AUTH CHECK (MAIN PAGE)
-// ===============================
-function checkAuth() {
-  const token = localStorage.getItem("authToken");
+// ===== ITEM POOLS =====
 
-  if (!token) {
-    window.location.href = "index.html";
-  }
-}
+// Round 1
+const itemsR1 = [
+  { label: "Compass", color: "#00f5ff" },
+  { label: "Clock", color: "#00ff88" },
+  { label: "Map", color: "#00ccff" },
+  { label: "Book", color: "#00ffaa" },
+  { label: "Lantern", color: "#00ffcc" },
+  { label: "Lead", color: "#00ffaa" },
+  { label: "Arrow", color: "#00ccdd" },
+  { label: "Flint+Steel", color: "#00ffaa" },
+  { label: "Glass Bottle", color: "#00ffee" },
+  { label: "Brick", color: "#00ccaa" },
+  { label: "Campfire", color: "#00ffaa" },
+  { label: "Stew", color: "#00ddaa" },
+  { label: "Ink Sac", color: "#00aacc" },
+  { label: "String", color: "#00bbff" },
+  { label: "Leather", color: "#00ffaa" },
+  { label: "Feather", color: "#00ddff" },
+  { label: "Charcoal", color: "#009999" },
+  { label: "Paper", color: "#00ccff" },
+  { label: "Beef", color: "#00ffaa" }
+];
 
-// ===============================
-// 🚀 INIT
-// ===============================
-window.onload = () => {
-  // Only run spinners if we're on main.html
-  if (document.getElementById("wheel1")) {
-    checkAuth();
+// Round 2
+const itemsR2 = [
+  { label: "Diamond", color: "#ffd700" },
+  { label: "Diamond Block", color: "#ffcc00" },
+  { label: "Iron Armor", color: "#ffaa00" },
+  { label: "Gold Armor", color: "#ffdd00" },
+  { label: "Ench Sword", color: "#ffbb00" },
+  { label: "Blaze Powder", color: "#ffaa00" },
+  { label: "Ender Pearl", color: "#ffcc00" },
+  { label: "Observer", color: "#ffee00" }
+];
 
-    createTicks("ticks1");
-    createTicks("ticks2");
-    createTicks("ticks3");
+// Round 3
+const itemsR3 = [
+  { label: "Beacon", color: "#ff8800" },
+  { label: "Netherite Block", color: "#ff5500" },
+  { label: "Dragon Egg", color: "#ff3366" },
+  { label: "Heavy Core", color: "#ff3300" },
+  { label: "Elytra", color: "#ff6600" }
+];
 
-    new Spinner(1);
-    new Spinner(2);
-    new Spinner(3);
-  }
-};
+// ===== INIT =====
+const spinner1 = new Spinner("wheel1", "result1", "btn1", itemsR1);
+const spinner2 = new Spinner("wheel2", "result2", "btn2", itemsR2);
+const spinner3 = new Spinner("wheel3", "result3", "btn3", itemsR3);
+
+// Hook buttons
+document.getElementById("btn1").onclick = () => spinner1.spin();
+document.getElementById("btn2").onclick = () => spinner2.spin();
+document.getElementById("btn3").onclick = () => spinner3.spin();
