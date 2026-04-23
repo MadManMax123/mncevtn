@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>CRAFTWAR ACCESS</title>
+
+<style>
+body {
+  margin:0;
+  height:100vh;
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  background:#020d1a;
+  font-family: 'Orbitron', sans-serif;
+  color:#00f5ff;
+}
+
+.login-box {
+  background: rgba(0,20,50,0.85);
+  padding:40px;
+  border:1px solid rgba(0,245,255,0.3);
+  box-shadow:0 0 25px #00f5ff33;
+  text-align:center;
+  width:320px;
+}
+
+h1 {
+  font-size:1.5rem;
+  margin-bottom:20px;
+}
+
+input {
+  width:100%;
+  padding:12px;
+  background:#000;
+  border:1px solid #00f5ff;
+  color:#00f5ff;
+  margin-bottom:15px;
+  outline:none;
+}
+
+button {
+  width:100%;
+  padding:12px;
+  background:transparent;
+  border:2px solid #00f5ff;
+  color:#00f5ff;
+  cursor:pointer;
+  transition:0.3s;
+}
+
+button:hover {
+  background:#00f5ff22;
+  box-shadow:0 0 10px #00f5ff;
+}
+
+.error {
+  color:#ff4444;
+  font-size:0.8rem;
+  margin-top:10px;
+}
+</style>
+</head>
+
+<body>
+
+<div class="login-box">
+  <h1>CRAFTWAR ACCESS</h1>
+  <input type="password" id="passwordInput" placeholder="Enter password">
+  <button id="loginBtn">ENTER</button>
+  <div id="errorMsg" class="error"></div>
+</div>
+
+<script src="script.js"></script>
+</body>
+</html>
