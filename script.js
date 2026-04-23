@@ -175,6 +175,32 @@ class Spinner {
   }
 }
 
+if (localStorage.getItem("auth") === "true") {
+  document.getElementById("login-screen").style.display = "none";
+  document.getElementById("app").style.display = "block";
+}
+
+async function login() {
+  const password = document.getElementById("passwordInput").value;
+
+  const res = await fetch("/api/auth", {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json"
+    },
+    body: JSON.stringify({ password })
+  });
+
+  const data = await res.json();
+
+  if (data.success) {
+    localStorage.setItem("auth", "true");
+    location.reload();
+  } else {
+    alert("Wrong password");
+  }
+}
+
 // ===============================
 // 🚀 INIT EVERYTHING
 // ===============================
