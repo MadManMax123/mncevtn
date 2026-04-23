@@ -5,6 +5,11 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>CRAFTWAR // TOURNAMENT SYSTEM</title>
 <link href="https://fonts.googleapis.com/css2?family=Share+Tech+Mono&family=Orbitron:wght@400;700;900&family=Exo+2:wght@300;400;700&display=swap" rel="stylesheet">
+  <script>
+if (localStorage.getItem("auth") !== "true") {
+  window.location.href = "index.html";
+}
+</script>
 <style>
 :root {
   --cyan: #00f5ff;
