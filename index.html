@@ -458,18 +458,62 @@ footer { text-align:center; padding:40px 20px; border-top:1px solid rgba(0,245,2
   <div class="section-title cyan">WHEEL OF FATE — ITEM ASSIGNMENT</div>
   <p style="font-family:'Share Tech Mono',monospace;font-size:.7rem;color:#4488aa;text-align:center;margin-top:12px;letter-spacing:2px">// NO TWO PLAYERS RECEIVE THE SAME ITEM — RE-SPIN ON DUPLICATE //</p>
 
-  <div class="spinner-container">
-    <div class="spinner-outer-ring"></div>
-    <div class="spinner-outer-ring2"></div>
-    <div class="spinner-ticks" id="ticks"></div>
-    <div class="wheel" id="wheel">
-      <canvas class="wheel-canvas" id="wheelCanvas" width="340" height="340"></canvas>
-    </div>
-    <div class="spinner-center">
-      <div class="center-hub">SPIN</div>
-    </div>
-    <div class="pointer"></div>
+<div class="spinner-container">
+  <div class="spinner-outer-ring"></div>
+  <div class="spinner-outer-ring2"></div>
+  <div class="spinner-ticks" id="ticks1"></div>
+
+  <div class="wheel">
+    <canvas class="wheel-canvas" id="wheel1" width="340" height="340"></canvas>
   </div>
+
+  <div class="spinner-center">
+    <div class="center-hub">R1</div>
+  </div>
+
+  <div class="pointer"></div>
+</div>
+
+<button id="btn1" class="spin-btn">SPIN R1</button>
+<div id="result1" class="spin-result"></div>
+
+  <div class="spinner-container">
+  <div class="spinner-outer-ring"></div>
+  <div class="spinner-outer-ring2"></div>
+  <div class="spinner-ticks" id="ticks2"></div>
+
+  <div class="wheel">
+    <canvas class="wheel-canvas" id="wheel2" width="340" height="340"></canvas>
+  </div>
+
+  <div class="spinner-center">
+    <div class="center-hub">R2</div>
+  </div>
+
+  <div class="pointer"></div>
+</div>
+
+<button id="btn2" class="spin-btn">SPIN R2</button>
+<div id="result2" class="spin-result"></div>
+
+  <div class="spinner-container">
+  <div class="spinner-outer-ring"></div>
+  <div class="spinner-outer-ring2"></div>
+  <div class="spinner-ticks" id="ticks3"></div>
+
+  <div class="wheel">
+    <canvas class="wheel-canvas" id="wheel3" width="340" height="340"></canvas>
+  </div>
+
+  <div class="spinner-center">
+    <div class="center-hub">FINAL</div>
+  </div>
+
+  <div class="pointer"></div>
+</div>
+
+<button id="btn3" class="spin-btn">SPIN FINAL</button>
+<div id="result3" class="spin-result"></div>
 
   <button class="spin-btn" id="spinBtn" onclick="spinWheel()">▶ SPIN WHEEL</button>
   <div class="spin-result" id="spinResult"></div>
