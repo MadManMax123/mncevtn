@@ -113,48 +113,48 @@ class Spinner {
 
 // ===== ITEM POOLS =====
 
-// Round 1
+// Round 1 — updated list
 const itemsR1 = [
-  { label: "Compass", color: "#00f5ff" },
-  { label: "Clock", color: "#00ff88" },
-  { label: "Map", color: "#00ccff" },
-  { label: "Book", color: "#00ffaa" },
-  { label: "Lantern", color: "#00ffcc" },
-  { label: "Lead", color: "#00ffaa" },
-  { label: "Arrow", color: "#00ccdd" },
-  { label: "Flint+Steel", color: "#00ffaa" },
-  { label: "Glass Bottle", color: "#00ffee" },
-  { label: "Brick", color: "#00ccaa" },
-  { label: "Campfire", color: "#00ffaa" },
-  { label: "Stew", color: "#00ddaa" },
-  { label: "Ink Sac", color: "#00aacc" },
-  { label: "String", color: "#00bbff" },
-  { label: "Leather", color: "#00ffaa" },
-  { label: "Feather", color: "#00ddff" },
-  { label: "Charcoal", color: "#009999" },
-  { label: "Paper", color: "#00ccff" },
-  { label: "Beef", color: "#00ffaa" }
+  { label: "Compass",         color: "#00f5ff" },
+  { label: "Clock",           color: "#00ff88" },
+  { label: "Map",             color: "#00ccff" },
+  { label: "Book",            color: "#00ffaa" },
+  { label: "Lantern",         color: "#00ffcc" },
+  { label: "Fishing Rod",     color: "#00ffaa" },
+  { label: "Arrow ×10",       color: "#00ccdd" },
+  { label: "Flint+Steel",     color: "#00ffaa" },
+  { label: "Brick Block ×3",  color: "#00ccaa" },
+  { label: "Mush Stew",       color: "#00ddaa" },
+  { label: "Ferm. Spider Eye",color: "#00aacc" },
+  { label: "Leather Armor",   color: "#00bbff" },
+  { label: "Iron Axe",        color: "#00ffee" },
+  { label: "Bucket",          color: "#00ccff" },
+  { label: "Book & Quill",    color: "#00ddff" },
+  { label: "Shield",          color: "#00ffaa" },
+  { label: "Item Frame",      color: "#00ccee" },
+  { label: "Flower Pot",      color: "#009999" },
+  { label: "Shears",          color: "#00ccff" },
+  { label: "Painting",        color: "#00ffaa" }
 ];
 
-// Round 2
+// Round 2 — updated list
 const itemsR2 = [
-  { label: "Diamond", color: "#ffd700" },
-  { label: "Diamond Block", color: "#ffcc00" },
-  { label: "Iron Armor", color: "#ffaa00" },
-  { label: "Gold Armor", color: "#ffdd00" },
-  { label: "Ench Sword", color: "#ffbb00" },
-  { label: "Blaze Powder", color: "#ffaa00" },
-  { label: "Ender Pearl", color: "#ffcc00" },
-  { label: "Observer", color: "#ffee00" }
+  { label: "Blaze Rod",          color: "#ffd700" },
+  { label: "Prism. Crystals",    color: "#ffcc00" },
+  { label: "Conduit",            color: "#ffaa00" },
+  { label: "Ghast Tear",         color: "#ffdd00" },
+  { label: "Totem of Undying",   color: "#ffbb00" },
+  { label: "Ancient Debris",     color: "#ffaa00" },
+  { label: "Wither Skel. Skull", color: "#ffcc00" }
 ];
 
-// Round 3
+// Round 3 — unchanged
 const itemsR3 = [
-  { label: "Beacon", color: "#ff8800" },
-  { label: "Netherite Block", color: "#ff5500" },
-  { label: "Dragon Egg", color: "#ff3366" },
-  { label: "Heavy Core", color: "#ff3300" },
-  { label: "Elytra", color: "#ff6600" }
+  { label: "Beacon",         color: "#ff8800" },
+  { label: "Netherite Block",color: "#ff5500" },
+  { label: "Dragon Egg",     color: "#ff3366" },
+  { label: "Heavy Core",     color: "#ff3300" },
+  { label: "Elytra",         color: "#ff6600" }
 ];
 
 // ===== INIT =====
