@@ -269,6 +269,51 @@ header { text-align: center; padding: 60px 20px 40px; position: relative; }
 .spin-result { margin-top:12px; font-family:'Orbitron',sans-serif; font-size:.95rem; color:var(--gold); text-shadow:var(--glow-gold); letter-spacing:3px; min-height:32px; }
 .spinner-note { font-family:'Share Tech Mono',monospace; font-size:.7rem; color:rgba(0,245,255,.4); letter-spacing:2px; margin-top:24px; }
 
+/* ── COMBINED RULES SECTION ── */
+.rules-section { max-width:1200px; margin:0 auto 80px; padding:0 20px; }
+.rules-category { margin-top:28px; }
+.rules-category-title {
+  font-family:'Orbitron',sans-serif; font-size:.72rem; letter-spacing:3px; text-transform:uppercase;
+  padding:8px 16px; margin-bottom:14px; display:inline-flex; align-items:center; gap:10px;
+  clip-path:polygon(0 0,calc(100% - 8px) 0,100% 8px,100% 100%,8px 100%,0 calc(100% - 8px));
+}
+.rules-category-title.red { color:#ff4444; background:rgba(255,68,68,.08); border:1px solid rgba(255,68,68,.3); text-shadow:0 0 8px #ff444488; }
+.rules-category-title.cyan { color:var(--cyan); background:rgba(0,245,255,.06); border:1px solid rgba(0,245,255,.25); text-shadow:var(--glow-c); }
+.rules-category-title.gold { color:var(--gold); background:rgba(255,215,0,.06); border:1px solid rgba(255,215,0,.25); text-shadow:var(--glow-gold); }
+.rules-category-title.green { color:var(--green); background:rgba(0,255,136,.06); border:1px solid rgba(0,255,136,.25); text-shadow:var(--glow-g); }
+
+.rules-cards-grid { display:grid; grid-template-columns:repeat(auto-fill,minmax(280px,1fr)); gap:14px; }
+.rule-card {
+  padding:18px 20px; position:relative;
+  clip-path:polygon(0 0,calc(100% - 12px) 0,100% 12px,100% 100%,12px 100%,0 calc(100% - 12px));
+  transition:transform .3s, box-shadow .3s;
+}
+.rule-card:hover { transform:translateY(-3px); }
+.rule-card.red { background:rgba(255,50,50,.04); border:1px solid rgba(255,68,68,.25); }
+.rule-card.red::before { content:''; position:absolute; top:0;left:0;right:0; height:2px; background:linear-gradient(90deg,#ff4444,#ff444400); }
+.rule-card.red:hover { box-shadow:0 8px 24px rgba(255,68,68,.15); }
+.rule-card.cyan { background:rgba(0,102,255,.06); border:1px solid rgba(0,245,255,.25); }
+.rule-card.cyan::before { content:''; position:absolute; top:0;left:0;right:0; height:2px; background:linear-gradient(90deg,var(--cyan),#00f5ff00); }
+.rule-card.cyan:hover { box-shadow:0 8px 24px rgba(0,245,255,.12); }
+.rule-card.gold { background:rgba(255,215,0,.04); border:1px solid rgba(255,215,0,.25); }
+.rule-card.gold::before { content:''; position:absolute; top:0;left:0;right:0; height:2px; background:linear-gradient(90deg,var(--gold),#ffd70000); }
+.rule-card.gold:hover { box-shadow:0 8px 24px rgba(255,215,0,.12); }
+.rule-card-title { font-family:'Orbitron',sans-serif; font-size:.7rem; letter-spacing:2px; margin-bottom:12px; }
+.rule-card.red .rule-card-title { color:#ff4444; text-shadow:0 0 8px #ff444488; }
+.rule-card.cyan .rule-card-title { color:var(--cyan); text-shadow:var(--glow-c); }
+.rule-card.gold .rule-card-title { color:var(--gold); text-shadow:var(--glow-gold); }
+.rule-lines { font-family:'Share Tech Mono',monospace; font-size:.63rem; color:#88aacc; line-height:1.85; }
+.rule-lines div { padding:3px 0; border-bottom:1px solid rgba(255,255,255,.04); }
+.rule-lines div:last-child { border-bottom:none; }
+.hl-cyan { color:var(--cyan); }
+.hl-gold { color:var(--gold); }
+.hl-red { color:#ff4444; }
+.hl-green { color:var(--green); }
+.hl-white { color:#fff; }
+
+.final-authority-box { margin-top:20px; background:rgba(255,68,68,.06); border:1px solid rgba(255,68,68,.4); padding:16px 24px; display:flex; align-items:center; gap:16px; clip-path:polygon(0 0,calc(100% - 16px) 0,100% 16px,100% 100%,16px 100%,0 calc(100% - 16px)); }
+.final-authority-box .icon { font-size:1.6rem; animation:trophyBounce 1.5s ease-in-out infinite; }
+
 /* ── ENCHANT ── */
 .enchant-section { max-width:1100px; margin:0 auto 70px; padding:0 20px; }
 .enchant-grid { display:grid; grid-template-columns:1fr 1fr; gap:20px; margin-top:24px; }
@@ -301,9 +346,7 @@ footer { text-align:center; padding:40px 20px; border-top:1px solid rgba(0,245,2
 .footer-line { width:100%; height:1px; background:linear-gradient(90deg,transparent,var(--cyan),var(--gold),var(--green),transparent); margin-bottom:20px; }
 
 /* ── GLITCH EFFECT on hover for section titles ── */
-.section-title:hover {
-  animation: glitch .4s step-end;
-}
+.section-title:hover { animation: glitch .4s step-end; }
 @keyframes glitch {
   0%{text-shadow:none}
   20%{text-shadow:-2px 0 #ff00ff, 2px 0 #00ffff}
@@ -313,7 +356,6 @@ footer { text-align:center; padding:40px 20px; border-top:1px solid rgba(0,245,2
   100%{text-shadow:none}
 }
 
-/* ── PULSE RING on spin win ── */
 @keyframes pulseRing {
   0%{box-shadow:0 0 0 0 rgba(0,245,255,.6)}
   70%{box-shadow:0 0 0 30px rgba(0,245,255,0)}
@@ -366,6 +408,7 @@ footer { text-align:center; padding:40px 20px; border-top:1px solid rgba(0,245,2
   </div>
   <div class="round-desc" style="margin-bottom:20px;padding-left:4px">// ALL 20 ITEMS REQUIRE ROUTING + MULTIPLE STEPS — NO INSTANT CRAFTS //</div>
   <div class="items-grid">
+
     <div class="item-card"><span class="num">#01</span>
       <div class="item-icon-wrap"><img class="mc-img" src="https://minecraft.wiki/images/Invicon_Compass.png" onerror="this.style.display='none';this.nextElementSibling.style.display='block'" alt="Compass"><span class="icon-emoji" style="display:none">🧭</span></div>
       <div class="item-name">COMPASS</div><div class="item-method">Iron + Redstone → craft</div></div>
@@ -379,8 +422,8 @@ footer { text-align:center; padding:40px 20px; border-top:1px solid rgba(0,245,2
       <div class="item-name">MAP</div><div class="item-method">Compass + Paper (sugarcane)</div></div>
 
     <div class="item-card"><span class="num">#04</span>
-      <div class="item-icon-wrap"><img class="mc-img" src="https://minecraft.wiki/images/Invicon_Book.png" onerror="this.style.display='none';this.nextElementSibling.style.display='block'" alt="Book"><span class="icon-emoji" style="display:none">📖</span></div>
-      <div class="item-name">BOOK</div><div class="item-method">Leather (cow) + Paper</div></div>
+      <div class="item-icon-wrap"><img class="mc-img" src="https://minecraft.wiki/images/Invicon_Enchanted_Book.png" onerror="this.style.display='none';this.nextElementSibling.style.display='block'" alt="Enchanted Book"><span class="icon-emoji" style="display:none">✨</span></div>
+      <div class="item-name">ENCHANTED BOOK</div><div class="item-method">Book + XP → Enchanting Table</div></div>
 
     <div class="item-card"><span class="num">#05</span>
       <div class="item-icon-wrap"><img class="mc-img" src="https://minecraft.wiki/images/Invicon_Lantern.png" onerror="this.style.display='none';this.nextElementSibling.style.display='block'" alt="Lantern"><span class="icon-emoji" style="display:none">🪔</span></div>
@@ -403,8 +446,8 @@ footer { text-align:center; padding:40px 20px; border-top:1px solid rgba(0,245,2
       <div class="item-name">BRICK BLOCK × 3</div><div class="item-method">Find Clay → Smelt → craft ×3</div></div>
 
     <div class="item-card"><span class="num">#10</span>
-      <div class="item-icon-wrap"><img class="mc-img" src="https://minecraft.wiki/images/Invicon_Mushroom_Stew.png" onerror="this.style.display='none';this.nextElementSibling.style.display='block'" alt="Mushroom Stew"><span class="icon-emoji" style="display:none">🍲</span></div>
-      <div class="item-name">MUSHROOM STEW</div><div class="item-method">Red + Brown Mushroom + Bowl</div></div>
+      <div class="item-icon-wrap"><img class="mc-img" src="https://minecraft.wiki/images/Invicon_Suspicious_Stew.png" onerror="this.style.display='none';this.nextElementSibling.style.display='block'" alt="Suspicious Stew"><span class="icon-emoji" style="display:none">🍵</span></div>
+      <div class="item-name">SUSPICIOUS STEW</div><div class="item-method">Mushroom + Flower + Bowl + Milk</div></div>
 
     <div class="item-card"><span class="num">#11</span>
       <div class="item-icon-wrap"><img class="mc-img" src="https://minecraft.wiki/images/Invicon_Fermented_Spider_Eye.png" onerror="this.style.display='none';this.nextElementSibling.style.display='block'" alt="Fermented Spider Eye"><span class="icon-emoji" style="display:none">🕷️</span></div>
@@ -415,12 +458,12 @@ footer { text-align:center; padding:40px 20px; border-top:1px solid rgba(0,245,2
       <div class="item-name">LEATHER ARMOR</div><div class="item-method">Kill Cows → craft full set</div></div>
 
     <div class="item-card"><span class="num">#13</span>
-      <div class="item-icon-wrap"><img class="mc-img" src="https://minecraft.wiki/images/Invicon_Iron_Axe.png" onerror="this.style.display='none';this.nextElementSibling.style.display='block'" alt="Iron Axe"><span class="icon-emoji" style="display:none">🪓</span></div>
-      <div class="item-name">IRON AXE</div><div class="item-method">Mine Iron → Smelt → craft</div></div>
+      <div class="item-icon-wrap"><img class="mc-img" src="https://minecraft.wiki/images/Invicon_Iron_Chestplate.png" onerror="this.style.display='none';this.nextElementSibling.style.display='block'" alt="Iron Armor"><span class="icon-emoji" style="display:none">🛡️</span></div>
+      <div class="item-name">IRON ARMOR</div><div class="item-method">Mine Iron → Smelt → craft full set</div></div>
 
     <div class="item-card"><span class="num">#14</span>
-      <div class="item-icon-wrap"><img class="mc-img" src="https://minecraft.wiki/images/Invicon_Water_Bucket.png" onerror="this.style.display='none';this.nextElementSibling.style.display='block'" alt="Bucket"><span class="icon-emoji" style="display:none">🪣</span></div>
-      <div class="item-name">BUCKET</div><div class="item-method">3 Iron → craft (fill w/ water)</div></div>
+      <div class="item-icon-wrap"><img class="mc-img" src="https://minecraft.wiki/images/Invicon_Heart_of_the_Sea.png" onerror="this.style.display='none';this.nextElementSibling.style.display='block'" alt="Heart of the Sea"><span class="icon-emoji" style="display:none">💙</span></div>
+      <div class="item-name">HEART OF THE SEA</div><div class="item-method">Find Buried Treasure → dig up</div></div>
 
     <div class="item-card"><span class="num">#15</span>
       <div class="item-icon-wrap"><img class="mc-img" src="https://minecraft.wiki/images/Invicon_Book_and_Quill.png" onerror="this.style.display='none';this.nextElementSibling.style.display='block'" alt="Book and Quill"><span class="icon-emoji" style="display:none">📝</span></div>
@@ -431,8 +474,8 @@ footer { text-align:center; padding:40px 20px; border-top:1px solid rgba(0,245,2
       <div class="item-name">SHIELD</div><div class="item-method">6 Planks + 1 Iron Ingot → craft</div></div>
 
     <div class="item-card"><span class="num">#17</span>
-      <div class="item-icon-wrap"><img class="mc-img" src="https://minecraft.wiki/images/Invicon_Item_Frame.png" onerror="this.style.display='none';this.nextElementSibling.style.display='block'" alt="Item Frame"><span class="icon-emoji" style="display:none">🖼️</span></div>
-      <div class="item-name">ITEM FRAME</div><div class="item-method">8 Sticks + Leather → craft</div></div>
+      <div class="item-icon-wrap"><img class="mc-img" src="https://minecraft.wiki/images/Invicon_Glow_Item_Frame.png" onerror="this.style.display='none';this.nextElementSibling.style.display='block'" alt="Glow Item Frame"><span class="icon-emoji" style="display:none">🖼️</span></div>
+      <div class="item-name">GLOW ITEM FRAME</div><div class="item-method">Item Frame + Glow Ink Sac (kill glow squid)</div></div>
 
     <div class="item-card"><span class="num">#18</span>
       <div class="item-icon-wrap"><img class="mc-img" src="https://minecraft.wiki/images/Invicon_Flower_Pot.png" onerror="this.style.display='none';this.nextElementSibling.style.display='block'" alt="Flower Pot"><span class="icon-emoji" style="display:none">🪴</span></div>
@@ -445,6 +488,7 @@ footer { text-align:center; padding:40px 20px; border-top:1px solid rgba(0,245,2
     <div class="item-card"><span class="num">#20</span>
       <div class="item-icon-wrap"><img class="mc-img" src="https://minecraft.wiki/images/Invicon_Painting.png" onerror="this.style.display='none';this.nextElementSibling.style.display='block'" alt="Painting"><span class="icon-emoji" style="display:none">🎨</span></div>
       <div class="item-name">PAINTING</div><div class="item-method">8 Sticks + Wool → craft</div></div>
+
   </div>
 </div>
 
@@ -463,6 +507,7 @@ footer { text-align:center; padding:40px 20px; border-top:1px solid rgba(0,245,2
   </div>
   <div class="round-desc" style="margin-bottom:20px;padding-left:4px">// NETHER COMBAT &amp; OCEAN DEPTHS — REAL DECISIONS REQUIRED //</div>
   <div class="items-grid">
+
     <div class="item-card"><span class="num">#01</span>
       <div class="item-icon-wrap"><img class="mc-img" src="https://minecraft.wiki/images/Invicon_Blaze_Rod.png" onerror="this.style.display='none';this.nextElementSibling.style.display='block'" alt="Blaze Rod"><span class="icon-emoji" style="display:none">🔥</span></div>
       <div class="item-name">BLAZE ROD</div><div class="item-method">Nether → Fortress → Kill Blaze</div></div>
@@ -490,6 +535,7 @@ footer { text-align:center; padding:40px 20px; border-top:1px solid rgba(0,245,2
     <div class="item-card special"><span class="num">#07</span><span class="skull-tag">💀💀</span>
       <div class="item-icon-wrap"><img class="mc-img" src="https://minecraft.wiki/images/Invicon_Wither_Skeleton_Skull.png" onerror="this.style.display='none';this.nextElementSibling.style.display='block'" alt="Wither Skeleton Skull"><span class="icon-emoji" style="display:none">💀</span></div>
       <div class="item-name">WITHER SKELETON SKULL</div><div class="item-method">Nether Fortress → Kill Wither Skeletons (RNG drop)</div></div>
+
   </div>
 </div>
 
@@ -508,6 +554,7 @@ footer { text-align:center; padding:40px 20px; border-top:1px solid rgba(0,245,2
   </div>
   <div class="round-desc" style="margin-bottom:20px;padding-left:4px">// COMMAND ENCHANT UNLOCKED — MAX LEVEL III — ONE WEAPON OF CHOICE — DECIDES THE BEST PLAYER //</div>
   <div class="items-grid">
+
     <div class="item-card special" style="border-color:rgba(255,215,0,.5);width:180px"><span class="num">#01</span><span class="skull-tag">💀</span>
       <div class="item-icon-wrap"><img class="mc-img" src="https://minecraft.wiki/images/Invicon_Beacon.png" onerror="this.style.display='none';this.nextElementSibling.style.display='block'" alt="Beacon"><span class="icon-emoji" style="display:none">🔆</span></div>
       <div class="item-name">BEACON (ACTIVATED)</div><div class="item-method">3 Wither Skulls → Spawn Wither → Kill → Nether Star → Craft → Pyramid → Activate</div></div>
@@ -521,16 +568,17 @@ footer { text-align:center; padding:40px 20px; border-top:1px solid rgba(0,245,2
       <div class="item-name">DRAGON EGG</div><div class="item-method">Stronghold → End Portal → Kill Dragon → Torch trick → Collect egg</div></div>
 
     <div class="item-card special" style="border-color:rgba(255,215,0,.5);width:180px"><span class="num">#04</span>
-      <div class="item-icon-wrap"><img class="mc-img" src="https://minecraft.wiki/images/Invicon_Heavy_Core.png" onerror="this.style.display='none';this.nextElementSibling.style.display='block'" alt="Heavy Core"><span class="icon-emoji" style="display:none">⚙️</span></div>
-      <div class="item-name">HEAVY CORE</div><div class="item-method">Trial Chamber → Combat → Vault RNG drop</div></div>
+      <div class="item-icon-wrap"><img class="mc-img" src="https://minecraft.wiki/images/Invicon_End_Crystal.png" onerror="this.style.display='none';this.nextElementSibling.style.display='block'" alt="End Crystal"><span class="icon-emoji" style="display:none">💠</span></div>
+      <div class="item-name">END CRYSTAL</div><div class="item-method">Eye of Ender + Ghast Tear + Glass → craft</div></div>
 
     <div class="item-card special" style="border-color:rgba(255,215,0,.5);width:180px"><span class="num">#05</span>
-      <div class="item-icon-wrap"><img class="mc-img" src="https://minecraft.wiki/images/Invicon_Elytra.png" onerror="this.style.display='none';this.nextElementSibling.style.display='block'" alt="Elytra"><span class="icon-emoji" style="display:none">🦋</span></div>
-      <div class="item-name">ELYTRA</div><div class="item-method">Beat Dragon → End Gateway → End City Ship → Loot</div></div>
+      <div class="item-icon-wrap"><img class="mc-img" src="https://minecraft.wiki/images/Invicon_Sculk_Catalyst.png" onerror="this.style.display='none';this.nextElementSibling.style.display='block'" alt="Sculk Catalyst"><span class="icon-emoji" style="display:none">🌑</span></div>
+      <div class="item-name">SCULK CATALYST</div><div class="item-method">Deep Dark → Summon Warden → Kill Warden → drop</div></div>
 
     <div class="item-card special" style="border-color:rgba(255,215,0,.5);width:180px"><span class="num">#06</span><span class="skull-tag">💀</span>
       <div class="item-icon-wrap"><img class="mc-img" src="https://minecraft.wiki/images/Invicon_Conduit.png" onerror="this.style.display='none';this.nextElementSibling.style.display='block'" alt="Conduit"><span class="icon-emoji" style="display:none">🌀</span></div>
       <div class="item-name">CONDUIT</div><div class="item-method">Heart of the Sea + 8 Nautilus Shells → craft (Ocean Monument)</div></div>
+
   </div>
 </div>
 
@@ -568,21 +616,20 @@ footer { text-align:center; padding:40px 20px; border-top:1px solid rgba(0,245,2
       <div class="milestone max"><span class="label">✦ EGG COLLECTED</span><span class="pts">100</span></div>
     </div>
     <div class="score-card">
-      <div class="score-item-name">⚙️ HEAVY CORE</div>
-      <div class="milestone"><span class="label">Chamber Found</span><span class="pts">30</span></div>
-      <div class="milestone"><span class="label">First Vault Opened</span><span class="pts">50</span></div>
-      <div class="milestone"><span class="label">Per Additional Vault</span><span class="pts">+10 ea</span></div>
-      <div class="milestone"><span class="label">Vault Cap</span><span class="pts">80</span></div>
-      <div class="milestone max"><span class="label">✦ HEAVY CORE OBTAINED</span><span class="pts">100</span></div>
+      <div class="score-item-name">💠 END CRYSTAL</div>
+      <div class="milestone"><span class="label">Eye of Ender obtained</span><span class="pts">20</span></div>
+      <div class="milestone"><span class="label">Ghast Tear obtained</span><span class="pts">35</span></div>
+      <div class="milestone"><span class="label">7 Glass blocks ready</span><span class="pts">50</span></div>
+      <div class="milestone"><span class="label">All materials gathered</span><span class="pts">80</span></div>
+      <div class="milestone max"><span class="label">✦ END CRYSTAL CRAFTED</span><span class="pts">100</span></div>
     </div>
     <div class="score-card">
-      <div class="score-item-name">🦋 ELYTRA</div>
-      <div class="milestone"><span class="label">Stronghold Found</span><span class="pts">20</span></div>
-      <div class="milestone"><span class="label">Portal Activated</span><span class="pts">40</span></div>
-      <div class="milestone"><span class="label">Dragon Killed</span><span class="pts">60</span></div>
-      <div class="milestone"><span class="label">End Gateway Used</span><span class="pts">75</span></div>
-      <div class="milestone"><span class="label">End City Found</span><span class="pts">85</span></div>
-      <div class="milestone max"><span class="label">✦ ELYTRA OBTAINED</span><span class="pts">100</span></div>
+      <div class="score-item-name">🌑 SCULK CATALYST</div>
+      <div class="milestone"><span class="label">Deep Dark Entered</span><span class="pts">20</span></div>
+      <div class="milestone"><span class="label">Ancient City Found</span><span class="pts">40</span></div>
+      <div class="milestone"><span class="label">Warden Summoned</span><span class="pts">65</span></div>
+      <div class="milestone"><span class="label">Warden at 50% HP</span><span class="pts">80</span></div>
+      <div class="milestone max"><span class="label">✦ WARDEN KILLED / CATALYST OBTAINED</span><span class="pts">100</span></div>
     </div>
     <div class="score-card">
       <div class="score-item-name">🌀 CONDUIT</div>
@@ -674,6 +721,139 @@ footer { text-align:center; padding:40px 20px; border-top:1px solid rgba(0,245,2
   <div class="spinner-note">// ROUND ITEMS LOADED — CLICK TO ASSIGN //</div>
 </div>
 
+<!-- ── COMBINED RULES SECTION ── -->
+<div class="rules-section">
+  <div class="section-title" style="color:#ff4444;text-shadow:0 0 8px #ff4444,0 0 20px #ff444444;">
+    <span style="flex:1;height:1px;background:linear-gradient(90deg,#ff4444,transparent);display:block"></span>
+    FULL RULEBOOK
+    <span style="flex:1;height:1px;background:linear-gradient(90deg,transparent,#ff4444);display:block"></span>
+  </div>
+
+  <!-- CATEGORY: COMBAT -->
+  <div class="rules-category">
+    <div class="rules-category-title red">⚔️ COMBAT &amp; PVP</div>
+    <div class="rules-cards-grid">
+      <div class="rule-card red">
+        <div class="rule-card-title">🔥 CORE COMBAT</div>
+        <div class="rule-lines">
+          <div>▸ Attack &amp; kill other players at any time outside safe zones</div>
+          <div>▸ All weapons, armor &amp; tools from rounds are allowed</div>
+          <div>▸ On death, inventory drops — others may loot freely</div>
+          <div>▸ Respawn is immediate — rejoin the game right away</div>
+        </div>
+      </div>
+      <div class="rule-card red">
+        <div class="rule-card-title">💣 EXPLOSIVES &amp; TERRAIN</div>
+        <div class="rule-lines">
+          <div>▸ TNT is fully allowed — use it to kill players or hold areas</div>
+          <div>▸ Terrain destruction permitted unless admin restricts it</div>
+        </div>
+      </div>
+      <div class="rule-card red">
+        <div class="rule-card-title">🤝 TEAMING &amp; ALLIANCES</div>
+        <div class="rule-lines">
+          <div>▸ Unofficial alliances are allowed</div>
+          <div>▸ Betrayal, ambushes &amp; shifting alliances are fair play</div>
+          <div>▸ No formal teams — this is an <span class="hl-red">individual competition</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- CATEGORY: ZONES & MOVEMENT -->
+  <div class="rules-category">
+    <div class="rules-category-title cyan">🛡️ ZONES &amp; MOVEMENT</div>
+    <div class="rules-cards-grid">
+      <div class="rule-card cyan">
+        <div class="rule-card-title">🛡️ SAFE ZONE</div>
+        <div class="rule-lines">
+          <div>▸ <span class="hl-cyan">20-block radius</span> around spawn is a strict safe zone</div>
+          <div>❌ PvP disabled inside</div>
+          <div>❌ TNT / damage not allowed inside</div>
+          <div>✅ Full PvP enabled beyond 20 blocks</div>
+        </div>
+      </div>
+      <div class="rule-card cyan">
+        <div class="rule-card-title">🔁 RETURN TO SPAWN</div>
+        <div class="rule-lines">
+          <div>▸ Button available bottom-right of screen</div>
+          <div>▸ Instant teleport to spawn — all items preserved</div>
+          <div>✅ <span class="hl-cyan">ONE USE PER ROUND only</span></div>
+          <div>❌ Cannot be reused in the same round</div>
+          <div style="color:var(--gold)">👉 Choose wisely — escape with loot or risk it for more progress</div>
+        </div>
+      </div>
+      <div class="rule-card cyan">
+        <div class="rule-card-title">🧭 INFORMATION ACCESS</div>
+        <div class="rule-lines">
+          <div>▸ Players may view X &amp; Z coordinates of major structures</div>
+          <div>▸ No restriction on using this info for routing or strategy</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- CATEGORY: QUALIFICATION -->
+  <div class="rules-category">
+    <div class="rules-category-title gold">🏁 QUALIFICATION &amp; PROGRESSION</div>
+    <div class="rules-cards-grid">
+      <div class="rule-card gold">
+        <div class="rule-card-title">🏁 QUALIFICATION RULES</div>
+        <div class="rule-lines">
+          <div><span class="hl-gold">ROUND 1</span> — Top 7 players qualify for Round 2</div>
+          <div><span class="hl-gold">ROUND 2</span> — Top 3 players qualify for the Final</div>
+          <div>⏱️ <span class="hl-cyan">Time runs out?</span> — Qualification decided by kill count</div>
+          <div>🩸 Kill every other player at least once → <span class="hl-green">Auto-qualify</span> <span class="hl-red">(not valid in Final Round)</span></div>
+        </div>
+      </div>
+      <div class="rule-card gold">
+        <div class="rule-card-title">🏆 WINNER BONUSES</div>
+        <div class="rule-lines">
+          <div><span class="hl-gold">Round 1 Winner</span> → +1 Extra Spin in Round 2 draw</div>
+          <div><span class="hl-gold">Round 2 Winner</span> → +1 Extra Spin in Final draw</div>
+          <div>▸ No duplicates — re-spin if same item lands twice</div>
+          <div>▸ All weapons &amp; gear carry forward between rounds</div>
+        </div>
+      </div>
+      <div class="rule-card gold">
+        <div class="rule-card-title">✨ ENCHANTMENT RULES</div>
+        <div class="rule-lines">
+          <div>▸ Manual enchanting allowed at any time (XP + table)</div>
+          <div>▸ Final Round: <span class="hl-gold">1 free /enchant command</span> per armor piece</div>
+          <div>▸ Final Round: <span class="hl-gold">1 free /enchant command</span> on one weapon</div>
+          <div><span class="hl-cyan">Command enchants capped at level </span><span class="hl-cyan">III</span></div>
+          <div style="color:#ff4444;border-top:1px solid rgba(255,68,68,.2);margin-top:4px;padding-top:6px;">❌ <span style="color:#ff4444;font-weight:bold">SILK TOUCH IS BANNED</span> — absolutely disallowed on any item at any time</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- CATEGORY: ADMIN -->
+  <div class="rules-category">
+    <div class="rules-category-title red">🎁 ADMIN &amp; AUTHORITY</div>
+    <div class="rules-cards-grid">
+      <div class="rule-card red">
+        <div class="rule-card-title">🎁 ADMIN INTERVENTIONS</div>
+        <div class="rule-lines">
+          <div>▸ Admins may drop random loot to specific players</div>
+          <div>▸ Admins may drop global loot events for all players</div>
+          <div>▸ These events are unpredictable — expect chaos</div>
+          <div>▸ <span class="hl-red">Admin decisions during events are final</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- FINAL AUTHORITY BOX -->
+  <div class="final-authority-box">
+    <span class="icon">⚠️</span>
+    <div style="font-family:'Share Tech Mono',monospace;font-size:.68rem;color:#ff6666;line-height:1.7;letter-spacing:1px;">
+      <strong style="color:#ff4444;font-family:'Orbitron',sans-serif;letter-spacing:2px;">FINAL AUTHORITY</strong><br>
+      In any conflict, dispute, or unclear situation — <strong style="color:#fff;">Admin decision is final and binding.</strong> No appeals. No mid-event arguments.
+    </div>
+  </div>
+</div>
+
 <!-- ── TIEBREAKER ── -->
 <div class="tiebreaker-section">
   <div class="section-title cyan">TIEBREAKER PROTOCOL</div>
@@ -686,102 +866,6 @@ footer { text-align:center; padding:40px 20px; border-top:1px solid rgba(0,245,2
       <p>⚔️ <span style="color:var(--gold);font-weight:bold">NETHER GOLD RUSH</span><br><br>
       The two contenders enter the Nether and have <span style="color:var(--cyan)">10 minutes</span> to collect as much gold as possible. All sources count — gold ore, nether gold ore, piglin drops, bastion loot. At time's end, the player with the most gold (ingots + nuggets combined, converted to ingot value) wins the round.<br><br>
       Judged and verified on the spot. No inventory swaps after time is called. This is for the final round ONLY.</p>
-    </div>
-  </div>
-</div>
-
-<!-- ── PVP RULES ── -->
-<div style="max-width:1100px;margin:0 auto 70px;padding:0 20px;">
-  <div class="section-title" style="color:#ff4444;text-shadow:0 0 8px #ff4444,0 0 20px #ff444444;">
-    <span style="flex:1;height:1px;background:linear-gradient(90deg,#ff4444,transparent);display:block"></span>
-    PVP RULES &amp; COMBAT SYSTEM
-    <span style="flex:1;height:1px;background:linear-gradient(90deg,transparent,#ff4444);display:block"></span>
-  </div>
-
-  <div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:16px;margin-top:28px;">
-    <div style="background:rgba(255,50,50,.04);border:1px solid rgba(255,68,68,.25);padding:20px;clip-path:polygon(0 0,calc(100% - 12px) 0,100% 12px,100% 100%,12px 100%,0 calc(100% - 12px));position:relative;transition:transform .3s,box-shadow .3s">
-      <div style="position:absolute;top:0;left:0;right:0;height:2px;background:linear-gradient(90deg,#ff4444,#ff444400);"></div>
-      <div style="font-family:'Orbitron',sans-serif;font-size:.72rem;color:#ff4444;letter-spacing:2px;margin-bottom:14px;text-shadow:0 0 8px #ff444488;">🔥 CORE COMBAT</div>
-      <div style="font-family:'Share Tech Mono',monospace;font-size:.63rem;color:#88aacc;line-height:1.8;">
-        <div style="padding:4px 0;border-bottom:1px solid rgba(255,68,68,.1);">▸ Attack &amp; kill other players at any time outside safe zones</div>
-        <div style="padding:4px 0;border-bottom:1px solid rgba(255,68,68,.1);">▸ All weapons, armor &amp; tools from rounds are allowed</div>
-        <div style="padding:4px 0;border-bottom:1px solid rgba(255,68,68,.1);">▸ On death, inventory drops — others may loot freely</div>
-        <div style="padding:4px 0;">▸ Respawn is immediate — rejoin the game right away</div>
-      </div>
-    </div>
-    <div style="background:rgba(255,50,50,.04);border:1px solid rgba(255,68,68,.25);padding:20px;clip-path:polygon(0 0,calc(100% - 12px) 0,100% 12px,100% 100%,12px 100%,0 calc(100% - 12px));position:relative;">
-      <div style="position:absolute;top:0;left:0;right:0;height:2px;background:linear-gradient(90deg,#ff4444,#ff444400);"></div>
-      <div style="font-family:'Orbitron',sans-serif;font-size:.72rem;color:#ff4444;letter-spacing:2px;margin-bottom:14px;text-shadow:0 0 8px #ff444488;">💣 EXPLOSIVES &amp; TERRAIN</div>
-      <div style="font-family:'Share Tech Mono',monospace;font-size:.63rem;color:#88aacc;line-height:1.8;">
-        <div style="padding:4px 0;border-bottom:1px solid rgba(255,68,68,.1);">▸ TNT is fully allowed — use it to kill players or hold areas</div>
-        <div style="padding:4px 0;">▸ Terrain destruction permitted unless admin restricts it</div>
-      </div>
-    </div>
-    <div style="background:rgba(255,50,50,.04);border:1px solid rgba(255,68,68,.25);padding:20px;clip-path:polygon(0 0,calc(100% - 12px) 0,100% 12px,100% 100%,12px 100%,0 calc(100% - 12px));position:relative;">
-      <div style="position:absolute;top:0;left:0;right:0;height:2px;background:linear-gradient(90deg,#ff4444,#ff444400);"></div>
-      <div style="font-family:'Orbitron',sans-serif;font-size:.72rem;color:#ff4444;letter-spacing:2px;margin-bottom:14px;text-shadow:0 0 8px #ff444488;">🤝 TEAMING</div>
-      <div style="font-family:'Share Tech Mono',monospace;font-size:.63rem;color:#88aacc;line-height:1.8;">
-        <div style="padding:4px 0;border-bottom:1px solid rgba(255,68,68,.1);">▸ Unofficial alliances are allowed</div>
-        <div style="padding:4px 0;border-bottom:1px solid rgba(255,68,68,.1);">▸ Betrayal, ambushes &amp; shifting alliances are fair play</div>
-        <div style="padding:4px 0;">▸ No formal teams — this is an <span style="color:#ff4444">individual competition</span></div>
-      </div>
-    </div>
-    <div style="background:rgba(255,50,50,.04);border:1px solid rgba(255,68,68,.25);padding:20px;clip-path:polygon(0 0,calc(100% - 12px) 0,100% 12px,100% 100%,12px 100%,0 calc(100% - 12px));position:relative;">
-      <div style="position:absolute;top:0;left:0;right:0;height:2px;background:linear-gradient(90deg,#ff4444,#ff444400);"></div>
-      <div style="font-family:'Orbitron',sans-serif;font-size:.72rem;color:#ff4444;letter-spacing:2px;margin-bottom:14px;text-shadow:0 0 8px #ff444488;">🎁 ADMIN INTERVENTIONS</div>
-      <div style="font-family:'Share Tech Mono',monospace;font-size:.63rem;color:#88aacc;line-height:1.8;">
-        <div style="padding:4px 0;border-bottom:1px solid rgba(255,68,68,.1);">▸ Admins may drop random loot to specific players</div>
-        <div style="padding:4px 0;border-bottom:1px solid rgba(255,68,68,.1);">▸ Admins may drop global loot for all players</div>
-        <div style="padding:4px 0;border-bottom:1px solid rgba(255,68,68,.1);">▸ These events are unpredictable — expect chaos</div>
-        <div style="padding:4px 0;">▸ <span style="color:#ff4444">Admin decisions during events are final</span></div>
-      </div>
-    </div>
-    <div style="background:rgba(0,102,255,.06);border:1px solid rgba(0,245,255,.25);padding:20px;clip-path:polygon(0 0,calc(100% - 12px) 0,100% 12px,100% 100%,12px 100%,0 calc(100% - 12px));position:relative;">
-      <div style="position:absolute;top:0;left:0;right:0;height:2px;background:linear-gradient(90deg,var(--cyan),#00f5ff00);"></div>
-      <div style="font-family:'Orbitron',sans-serif;font-size:.72rem;color:var(--cyan);letter-spacing:2px;margin-bottom:14px;text-shadow:var(--glow-c);">🛡️ SAFE ZONE</div>
-      <div style="font-family:'Share Tech Mono',monospace;font-size:.63rem;color:#88aacc;line-height:1.8;">
-        <div style="padding:4px 0;border-bottom:1px solid rgba(0,245,255,.1);">▸ <span style="color:var(--cyan)">50-block radius</span> around spawn is a strict safe zone</div>
-        <div style="padding:4px 0;border-bottom:1px solid rgba(0,245,255,.1);">❌ PvP disabled inside</div>
-        <div style="padding:4px 0;border-bottom:1px solid rgba(0,245,255,.1);">❌ TNT / damage not allowed inside</div>
-        <div style="padding:4px 0;">✅ Full PvP enabled beyond 50 blocks</div>
-      </div>
-    </div>
-    <div style="background:rgba(0,102,255,.06);border:1px solid rgba(0,245,255,.25);padding:20px;clip-path:polygon(0 0,calc(100% - 12px) 0,100% 12px,100% 100%,12px 100%,0 calc(100% - 12px));position:relative;">
-      <div style="position:absolute;top:0;left:0;right:0;height:2px;background:linear-gradient(90deg,var(--cyan),#00f5ff00);"></div>
-      <div style="font-family:'Orbitron',sans-serif;font-size:.72rem;color:var(--cyan);letter-spacing:2px;margin-bottom:14px;text-shadow:var(--glow-c);">🔁 RETURN TO SPAWN</div>
-      <div style="font-family:'Share Tech Mono',monospace;font-size:.63rem;color:#88aacc;line-height:1.8;">
-        <div style="padding:4px 0;border-bottom:1px solid rgba(0,245,255,.1);">▸ Button available bottom-right of screen</div>
-        <div style="padding:4px 0;border-bottom:1px solid rgba(0,245,255,.1);">▸ Instant teleport to spawn — all items preserved</div>
-        <div style="padding:4px 0;border-bottom:1px solid rgba(0,245,255,.1);">✅ <span style="color:var(--cyan)">ONE USE PER ROUND only</span></div>
-        <div style="padding:4px 0;border-bottom:1px solid rgba(0,245,255,.1);">❌ Cannot be reused in the same round</div>
-        <div style="padding:4px 0;color:var(--gold);">👉 Choose wisely — escape with loot or risk it for more progress</div>
-      </div>
-    </div>
-    <div style="background:rgba(0,102,255,.06);border:1px solid rgba(0,245,255,.25);padding:20px;clip-path:polygon(0 0,calc(100% - 12px) 0,100% 12px,100% 100%,12px 100%,0 calc(100% - 12px));position:relative;">
-      <div style="position:absolute;top:0;left:0;right:0;height:2px;background:linear-gradient(90deg,var(--cyan),#00f5ff00);"></div>
-      <div style="font-family:'Orbitron',sans-serif;font-size:.72rem;color:var(--cyan);letter-spacing:2px;margin-bottom:14px;text-shadow:var(--glow-c);">🧭 INFORMATION ACCESS</div>
-      <div style="font-family:'Share Tech Mono',monospace;font-size:.63rem;color:#88aacc;line-height:1.8;">
-        <div style="padding:4px 0;border-bottom:1px solid rgba(0,245,255,.1);">▸ Players may view X &amp; Z coordinates of major structures</div>
-        <div style="padding:4px 0;">▸ No restriction on using this info for routing or strategy</div>
-      </div>
-    </div>
-    <div style="background:rgba(255,215,0,.04);border:1px solid rgba(255,215,0,.25);padding:20px;clip-path:polygon(0 0,calc(100% - 12px) 0,100% 12px,100% 100%,12px 100%,0 calc(100% - 12px));position:relative;">
-      <div style="position:absolute;top:0;left:0;right:0;height:2px;background:linear-gradient(90deg,var(--gold),#ffd70000);"></div>
-      <div style="font-family:'Orbitron',sans-serif;font-size:.72rem;color:var(--gold);letter-spacing:2px;margin-bottom:14px;text-shadow:var(--glow-gold);">🏁 QUALIFICATION RULES</div>
-      <div style="font-family:'Share Tech Mono',monospace;font-size:.63rem;color:#88aacc;line-height:1.8;">
-        <div style="padding:4px 0;border-bottom:1px solid rgba(255,215,0,.1);"><span style="color:var(--gold);">ROUND 1</span> — Top 7 players qualify</div>
-        <div style="padding:4px 0;border-bottom:1px solid rgba(255,215,0,.1);"><span style="color:var(--gold);">ROUND 2</span> — Top 3 players qualify</div>
-        <div style="padding:4px 0;border-bottom:1px solid rgba(255,215,0,.1);">⏱️ <span style="color:var(--cyan)">Time runs out?</span> — Qualification decided by kill count</div>
-        <div style="padding:4px 0;">🩸 Kill every other player at least once → <span style="color:#00ff88">Auto-qualify</span> <span style="color:#ff4444">(not valid in Final Round)</span></div>
-      </div>
-    </div>
-  </div>
-
-  <div style="margin-top:20px;background:rgba(255,68,68,.06);border:1px solid rgba(255,68,68,.4);padding:16px 24px;display:flex;align-items:center;gap:16px;clip-path:polygon(0 0,calc(100% - 16px) 0,100% 16px,100% 100%,16px 100%,0 calc(100% - 16px));">
-    <span style="font-size:1.6rem;animation:trophyBounce 1.5s ease-in-out infinite">⚠️</span>
-    <div style="font-family:'Share Tech Mono',monospace;font-size:.68rem;color:#ff6666;line-height:1.7;letter-spacing:1px;">
-      <strong style="color:#ff4444;font-family:'Orbitron',sans-serif;letter-spacing:2px;">FINAL AUTHORITY</strong><br>
-      In any conflict, dispute, or unclear situation — <strong style="color:#fff;">Admin decision is final and binding.</strong> No appeals. No mid-event arguments.
     </div>
   </div>
 </div>
@@ -884,7 +968,6 @@ class Spinner {
       ctx.arc(this.cx, this.cy, this.radius, start, end);
       ctx.closePath();
 
-      // gradient fill
       const mid = start + slice / 2;
       const gx = this.cx + Math.cos(mid) * this.radius * .5;
       const gy = this.cy + Math.sin(mid) * this.radius * .5;
@@ -902,7 +985,7 @@ class Spinner {
       ctx.translate(this.cx, this.cy);
       ctx.rotate(start + slice / 2);
       ctx.textAlign = "right";
-      ctx.font = 'bold 8px "Share Tech Mono"';
+      ctx.font = 'bold 11px "Share Tech Mono"';
       ctx.fillStyle = item.color;
       ctx.shadowColor = item.color;
       ctx.shadowBlur = 10;
@@ -910,7 +993,6 @@ class Spinner {
       ctx.restore();
     });
 
-    // centre glow
     ctx.beginPath();
     ctx.arc(this.cx, this.cy, 30, 0, Math.PI*2);
     const cg = ctx.createRadialGradient(this.cx,this.cy,0,this.cx,this.cy,30);
@@ -963,7 +1045,6 @@ class Spinner {
       { duration:600, easing:"cubic-bezier(.34,1.56,.64,1)", fill:"forwards" }
     );
 
-    // container flash
     this.container.style.transition = 'box-shadow .1s';
     this.container.style.boxShadow = `0 0 60px ${chosen.color}88, 0 0 120px ${chosen.color}33`;
     setTimeout(() => { this.container.style.boxShadow = ''; }, 800);
@@ -972,26 +1053,26 @@ class Spinner {
 
 // ── ITEM POOLS ──
 const itemsR1 = [
-  { label:"Compass",          color:"#00f5ff" },
-  { label:"Clock",            color:"#00ff88" },
-  { label:"Map",              color:"#00ccff" },
-  { label:"Book",             color:"#00ffaa" },
-  { label:"Lantern",          color:"#00ffcc" },
-  { label:"Fishing Rod",      color:"#00ffaa" },
-  { label:"Arrow ×10",        color:"#00ccdd" },
-  { label:"Flint+Steel",      color:"#00ffaa" },
-  { label:"Brick Block ×3",   color:"#00ccaa" },
-  { label:"Mush Stew",        color:"#00ddaa" },
-  { label:"Ferm. Spider Eye", color:"#00aacc" },
-  { label:"Leather Armor",    color:"#00bbff" },
-  { label:"Iron Axe",         color:"#00ffee" },
-  { label:"Bucket",           color:"#00ccff" },
-  { label:"Book & Quill",     color:"#00ddff" },
-  { label:"Shield",           color:"#00ffaa" },
-  { label:"Item Frame",       color:"#00ccee" },
-  { label:"Flower Pot",       color:"#009999" },
-  { label:"Shears",           color:"#00ccff" },
-  { label:"Painting",         color:"#00ffaa" }
+  { label:"Compass",            color:"#00f5ff" },
+  { label:"Clock",              color:"#00ff88" },
+  { label:"Map",                color:"#00ccff" },
+  { label:"Enchanted Book",     color:"#00ffaa" },
+  { label:"Lantern",            color:"#00ffcc" },
+  { label:"Fishing Rod",        color:"#00ffaa" },
+  { label:"Arrow ×10",          color:"#00ccdd" },
+  { label:"Flint+Steel",        color:"#00ffaa" },
+  { label:"Brick Block ×3",     color:"#00ccaa" },
+  { label:"Suspicious Stew",    color:"#00ddaa" },
+  { label:"Ferm. Spider Eye",   color:"#00aacc" },
+  { label:"Leather Armor",      color:"#00bbff" },
+  { label:"Iron Armor",         color:"#00ffee" },
+  { label:"Heart of the Sea",   color:"#00ccff" },
+  { label:"Book & Quill",       color:"#00ddff" },
+  { label:"Shield",             color:"#00ffaa" },
+  { label:"Glow Item Frame",    color:"#00ccee" },
+  { label:"Flower Pot",         color:"#009999" },
+  { label:"Shears",             color:"#00ccff" },
+  { label:"Painting",           color:"#00ffaa" }
 ];
 const itemsR2 = [
   { label:"Blaze Rod",           color:"#ffd700" },
@@ -1006,8 +1087,8 @@ const itemsR3 = [
   { label:"Beacon",          color:"#ff8800" },
   { label:"Netherite Block", color:"#ff5500" },
   { label:"Dragon Egg",      color:"#ff3366" },
-  { label:"Heavy Core",      color:"#ff3300" },
-  { label:"Elytra",          color:"#ff6600" },
+  { label:"End Crystal",     color:"#ff3300" },
+  { label:"Sculk Catalyst",  color:"#ff6600" },
   { label:"Conduit",         color:"#ff44cc" }
 ];
 
