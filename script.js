@@ -141,7 +141,7 @@ const itemsR1 = [
 const itemsR2 = [
   { label: "Blaze Rod",          color: "#ffd700" },
   { label: "Prism. Crystals",    color: "#ffcc00" },
-  { label: "Conduit",            color: "#ffaa00" },
+  { label: "Gold Block",         color: "#ffaa00" },
   { label: "Ghast Tear",         color: "#ffdd00" },
   { label: "Totem of Undying",   color: "#ffbb00" },
   { label: "Ancient Debris",     color: "#ffaa00" },
@@ -154,7 +154,8 @@ const itemsR3 = [
   { label: "Netherite Block",color: "#ff5500" },
   { label: "Dragon Egg",     color: "#ff3366" },
   { label: "Heavy Core",     color: "#ff3300" },
-  { label: "Elytra",         color: "#ff6600" }
+  { label: "Elytra",         color: "#ff6600" },
+  { label: "Conduit",        color: "#ff44cc" }
 ];
 
 // ===== INIT =====
