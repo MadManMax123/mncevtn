@@ -942,8 +942,8 @@ footer { text-align:center; padding:40px 20px; border-top:1px solid rgba(0,245,2
       <div class="rule-card gold">
         <div class="rule-card-title">🏁 QUALIFICATION RULES</div>
         <div class="rule-lines">
-          <div><span class="hl-gold">ROUND 1</span> — First 7 players to find their items.</div>
-          <div><span class="hl-gold">ROUND 2</span> — First 3 players to find their items.</div>
+          <div><span class="hl-gold">ROUND 1</span> — Top 7 players qualify for Round 2</div>
+          <div><span class="hl-gold">ROUND 2</span> — Top 3 players qualify for the Final</div>
           <div>⏱️ <span class="hl-cyan">Time runs out?</span> — Qualification decided by kill count</div>
           <div>🩸 Kill every other player at least once → <span class="hl-green">Auto-qualify</span> <span class="hl-red">(not valid in Final Round)</span></div>
         </div>
@@ -973,7 +973,8 @@ footer { text-align:center; padding:40px 20px; border-top:1px solid rgba(0,245,2
           <div>▸ Players eliminated at the end of a round are <span class="hl-red">disqualified</span> from advancing</div>
           <div>▸ Before the next round begins, a disqualified player may <span class="hl-gold">gift their entire inventory</span> to any one player who has qualified</div>
           <div>▸ The transfer is <span class="hl-white">one-way and one-time</span> — no partial splits, no item-by-item trades</div>
-          <div>  <span class="hl-red">(not valid in Final Round)</span></div>
+          <div>▸ The receiving player must <span class="hl-cyan">accept the transfer</span> — they cannot be forced to take items</div>
+          <div>▸ Disqualified players <span class="hl-red">may not keep items</span> once the next round starts</div>
           <div style="color:var(--gold);border-top:1px solid rgba(255,215,0,.2);margin-top:4px;padding-top:6px;">👉 Choose who you gift wisely — loot in the right hands can flip the whole final</div>
         </div>
       </div>
@@ -990,15 +991,25 @@ footer { text-align:center; padding:40px 20px; border-top:1px solid rgba(0,245,2
   </div>
   <!-- CATEGORY: ADMIN -->
   <div class="rules-category">
-    <div class="rules-category-title red">🎁 ADMIN &amp; AUTHORITY</div>
+    <div class="rules-category-title red">ADMIN INTERVENTIONS</div>
     <div class="rules-cards-grid">
       <div class="rule-card red">
-        <div class="rule-card-title">🎁 ADMIN INTERVENTIONS</div>
+        <div class="rule-card-title">☠️ ADMIN MOB SPAWNS</div>
         <div class="rule-lines">
-          <div>▸ Admins may drop random loot to specific players</div>
-          <div>▸ Admins may drop global loot events for all players</div>
-          <div>▸ These events are unpredictable — expect chaos</div>
-          <div>▸ <span class="hl-red">Admin decisions during events are final</span></div>
+          <div>▸ Admins will <span class="hl-red">spawn hostile mobs</span> on random players at any time during Rounds 1 &amp; 2</div>
+          <div>▸ Mob tier scales with player density — <span class="hl-gold">solo player</span> may get a Spider; <span class="hl-red">clustered players</span> may get a Wither</div>
+          <div>▸ Anything goes — Zombie to Warden, Blaze to Wither — <span class="hl-red">entirely admin's call</span></div>
+          <div>▸ No warning. No cooldown. No mercy.</div>
+          <div style="color:#ff4444;border-top:1px solid rgba(255,68,68,.2);margin-top:4px;padding-top:6px;">❌ <span class="hl-red">NO admin mob spawns in the Final Round</span> — Round 3 is decided purely by player skill</div>
+        </div>
+      </div>
+      <div class="rule-card red">
+        <div class="rule-card-title">🎁 ADMIN LOOT DROPS</div>
+        <div class="rule-lines">
+          <div>▸ Admins may drop <span class="hl-gold">random loot</span> to specific players at any time</div>
+          <div>▸ Admins may trigger <span class="hl-gold">global loot events</span> that drop items for all players simultaneously</div>
+          <div>▸ These events are completely unpredictable — <span class="hl-red">expect chaos</span></div>
+          <div>▸ <span class="hl-red">Admin decisions on loot drops are final</span> — no requests, no trades through admins</div>
         </div>
       </div>
     </div>
@@ -1020,12 +1031,12 @@ footer { text-align:center; padding:40px 20px; border-top:1px solid rgba(0,245,2
   <div class="tie-list">
     <div class="tie-item" data-n="TB1">
       <p>🗡️ <span style="color:#ff4444;font-weight:bold">PURE PVP — LAST MAN STANDING</span><br><br>
-      If any round cannot be decided by scoring: all tied players enter an open fight with the gear they carried. No resets. No second chances. <span style="color:#ff4444">Last surviving player qualifies.</span> This is a tiebreaker for the first round to qualify to the second round.</p>
+      If any round cannot be decided by scoring: all tied players enter an open fight with the gear they carried. No resets. No second chances. <span style="color:#ff4444">Last surviving player qualifies.</span> Not valid as a tiebreaker in the Final Round.</p>
     </div>
     <div class="tie-item" data-n="TB2">
       <p>⚔️ <span style="color:var(--gold);font-weight:bold">NETHER GOLD RUSH</span><br><br>
       The two contenders enter the Nether and have <span style="color:var(--cyan)">10 minutes</span> to collect as much gold as possible. All sources count — gold ore, nether gold ore, piglin drops, bastion loot. At time's end, the player with the most gold (ingots + nuggets combined, converted to ingot value) wins the round.<br><br>
-      Judged and verified on the spot. No inventory swaps after time is called. This is for the second round to qualify to the final.</p>
+      Judged and verified on the spot. No inventory swaps after time is called. This is for the final round ONLY.</p>
     </div>
   </div>
 </div>
